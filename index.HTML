@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Cantinho Especial ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="heart-container"></div>
+
+    <section id="welcome-section" class="full-height-section">
+        <div class="welcome-content">
+            <h1>Bem-vindos ao Nosso Cantinho!</h1>
+            <p>Descubra a melodia do nosso amor e nossas memórias mais preciosas.</p>
+            <button id="enter-button">Explorar</button>
+        </div>
+    </section>
+
+    <main id="main-content" style="display: none;">
+        <header>
+            <h1>Nosso Amor em Melodia e Imagens</h1>
+            <p>Um espaço dedicado a nós e às nossas lembranças.</p>
+        </header>
+
+        <section id="music-player">
+            <h2>Nossa Trilha Sonora</h2>
+            <div class="music-player-container">
+                <div class="album-art">
+                    <img src="img/capaMsc.jpg" alt="Capa do Álbum">
+                </div>
+                <div class="player-controls">
+                    <div class="song-info">
+                        <p class="song-title">2 Much</p>
+                        <p class="artist-name">Justin Bieber</p>
+                    </div>
+                    <div class="controls">
+                        <button class="control-button prev-track">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 6h2v12H6V6m3.5 6l8.5 6V6l-8.5 6z"/></svg>
+                        </button>
+                        <button class="control-button play-pause">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14zm10-8l-6 4V7l6 4z"/></svg>
+                        </button>
+                        <button class="control-button next-track">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16 6h2v12h-2V6m-8.5 6l8.5-6v12l-8.5-6z"/></svg>
+                        </button>
+                    </div>
+                    <div class="progress-bar-container">
+                        <input type="range" id="progress" value="0" step="1" min="0" max="100">
+                    </div>
+                    <div class="volume-controls">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <input type="range" id="volume" value="100" step="1" min="0" max="100">
+                    </div>
+                    <audio id="audio" src="audio/Justin Bieber - 2 Much (Visualizer).mp3"></audio>
+                </div>
+            </div>
+        </section>
+
+        <section id="photo-gallery">
+            <h2>Nossas Memórias em Fotos</h2>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="img/1.jpg" alt="Nossa foto juntos 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/IMG_1677 (1).jpg" alt="Nossa foto juntos 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/IMG-20241227-WA0068.jpg" alt="Nossa foto juntos 3">
+                </div>
+                <button class="carousel-prev">&#10094;</button>
+                <button class="carousel-next">&#10095;</button>
+            </div>
+        </section>
+
+        <section id="our-story">
+            <h2>Nossa História e Sentimentos</h2>
+            <div class="text-content">
+                <p>
+                    Querida Karine,<br><br>
+                    Neste Dia dos Namorados, quero celebrar cada momento que compartilhamos.
+                    Desde 12/2020 que pedi sua mão, minha vida ganhou novas cores e sentidos.
+                    Sua presença é um presente que valorizo a cada dia.
+                </p>
+                <p>
+                    Cada dia ao seu lado é um presente. Sua risada, apoio, carinho, cuidado e muitas outras qualidades...
+                    ilumina meus dias. Espero que este cantinho nos traga boas recordações e que possamos criar muitas outras.
+                </p>
+                <p>
+                    Com todo o meu amor,<br>
+                    Brunno Araujo.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 - Feito com Amor para Você!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
