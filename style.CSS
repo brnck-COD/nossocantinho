@@ -65,52 +65,268 @@ section {
     margin-bottom: 50px;
     padding: 20px;
     border-bottom: 1px solid #eee;
+    /* Animação de fade-in para seções */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 section:last-of-type {
     border-bottom: none;
 }
 
-/* --- Player de Música --- */
-#music-player .player-container {
-    text-align: center;
-    background-color: var(--secondary-color);
+/* Animação de entrada para as seções */
+body.loaded section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.loaded #music-player {
+    transition-delay: 0.2s;
+}
+body.loaded #photo-gallery {
+    transition-delay: 0.4s;
+}
+body.loaded #our-story {
+    transition-delay: 0.6s;
+}
+
+
+/* --- Player de Música (Estilo Spotify) --- */
+#music-player .music-player-container {
+    background-color: #1DB954; /* Verde do Spotify */
+    color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+#music-player .album-art {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0; /* Impede que a capa do álbum diminua em telas pequenas */
+}
+
+#music-player .album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#music-player .player-controls {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#music-player .song-info p {
+    margin: 0;
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+#music-player .song-info .song-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    opacity: 1;
+    white-space: nowrap; /* Impede que o título quebre a linha */
+    overflow: hidden; /* Esconde o texto que transborda */
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
+}
+
+#music-player .controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+#music-player .control-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em; /* Aumenta um pouco para melhor visualização */
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    padding: 5px;
+    display: flex; /* Para centralizar o SVG */
+    justify-content: center;
+    align-items: center;
+}
+
+#music-player .control-button:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+}
+#music-player .control-button svg {
+    width: 30px; /* Garante que os ícones tenham um tamanho bom */
+    height: 30px;
+    fill: currentColor; /* Usa a cor definida no pai */
+}
+
+
+#music-player .progress-bar-container {
+    width: 100%;
+}
+
+#music-player #progress {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ddd;
+    height: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#music-player #progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#music-player #progress::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+#music-player .volume-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0; /* Impede que o controle de volume diminua demais */
+}
+
+#music-player .volume-controls svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    opacity: 0.7;
+}
+
+#music-player .volume-controls #volume {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ddd;
+    height: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px;
+}
+
+#music-player .volume-controls #volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#music-player .volume-controls #volume::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* Esconde o player de áudio padrão */
 #music-player audio {
-    width: 80%;
-    max-width: 400px;
-    margin: 15px auto;
-    display: block; /* Garante que o player fique centralizado */
+    display: none;
 }
 
-#music-player p {
-    font-style: italic;
-    color: var(--text-dark);
+/* --- Carrossel de Fotos --- */
+#photo-gallery {
+    position: relative; /* Essencial para o posicionamento dos botões */
+    overflow: hidden; /* Esconde as fotos que estão fora da tela */
+    padding: 20px 0; /* Aumenta o padding para os botões ficarem dentro */
 }
 
-/* --- Galeria de Fotos --- */
-#photo-gallery .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+.carousel-container {
+    position: relative;
+    width: 100%;
+    min-height: 300px; /* Altura mínima para o contêiner do carrossel */
+    display: flex; /* Usa flexbox para centralizar imagens verticalmente */
+    align-items: center;
     justify-content: center;
 }
 
-#photo-gallery img {
+.carousel-slide {
+    display: none; /* Esconde todas as fotos inicialmente */
+    position: absolute; /* Permite sobrepor e animar */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 200px; /* Altura fixa para as imagens */
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    height: 100%; /* Ocupa a altura total do container */
+    transition: opacity 0.6s ease-in-out;
+    display: flex; /* Para centralizar a imagem dentro do slide */
+    justify-content: center;
+    align-items: center;
 }
 
-#photo-gallery img:hover {
-    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+.carousel-slide:first-child {
+    display: block; /* Exibe a primeira foto */
+}
+
+.carousel-slide img {
+    width: 100%;
+    max-width: 600px; /* Limita a largura da imagem */
+    height: 400px; /* Altura fixa para as imagens */
+    object-fit: contain; /* Garante que a imagem preencha o espaço sem cortar */
+    background-color: #fff; /* Fundo branco caso a imagem não preencha */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3em; /* Aumenta o tamanho dos ícones */
+    background: rgba(255, 255, 255, 0.5); /* Fundo semi-transparente para o botão */
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 50%; /* Botões redondos */
+    opacity: 0.8;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    z-index: 10; /* Garante que os botões fiquem acima das imagens */
+    display: flex; /* Para centralizar o texto/ícone */
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo mais opaco no hover */
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
 }
 
 /* --- Área de Texto --- */
@@ -148,68 +364,26 @@ footer {
         padding: 20px 15px;
     }
 
-    #photo-gallery .gallery-grid {
-        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    /* O Carrossel já é responsivo, não precisamos de grid-template-columns aqui */
+    #photo-gallery .carousel-slide img {
+        height: 300px; /* Ajusta a altura da imagem em telas menores */
     }
 
-    #music-player audio {
-        width: 95%;
+    #music-player .music-player-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-}
-/* --- Carrossel de Fotos --- */
-#photo-gallery {
-    overflow: hidden; /* Esconde as fotos que estão fora da tela */
-}
 
-.carousel-container {
-    position: relative;
-    width: 100%;
-}
+    #music-player .album-art {
+        margin-bottom: 10px;
+    }
 
-.carousel-slide {
-    display: none; /* Esconde todas as fotos inicialmente */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    transition: opacity 0.6s ease-in-out;
-}
+    #music-player .progress-bar-container {
+        margin-top: 10px;
+    }
 
-.carousel-slide:first-child {
-    display: block; /* Exibe a primeira foto */
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: auto; /* Ajusta a altura proporcionalmente */
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-prev, .carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2em;
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    cursor: pointer;
-    padding: 10px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    z-index: 10; /* Garante que os botões fiquem acima das imagens */
-}
-
-.carousel-prev:hover, .carousel-next:hover {
-    opacity: 1;
-}
-
-.carousel-prev {
-    left: 10px;
-}
-
-.carousel-next {
-    right: 10px;
+    #music-player .volume-controls {
+        margin-top: 10px;
+    }
 }
