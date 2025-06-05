@@ -1,0 +1,158 @@
+/* Importa uma fonte romântica do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:wght@300;400;700&display=swap');
+
+:root {
+    /* Cores inspiradas no Dia dos Namorados */
+    --primary-color: #FF6B6B; /* Vermelho mais suave */
+    --secondary-color: #FFC0CB; /* Rosa claro */
+    --accent-color: #4ECDC4; /* Um toque de turquesa */
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --bg-light: #f9f9f9;
+    --bg-dark: #2c3e50;
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    scroll-behavior: smooth; /* Rolagem suave */
+}
+
+/* Estilo para cabeçalhos e títulos */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: var(--text-light);
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+/* --- Conteúdo Principal --- */
+main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+section {
+    margin-bottom: 50px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+/* --- Player de Música --- */
+#music-player .player-container {
+    text-align: center;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#music-player audio {
+    width: 80%;
+    max-width: 400px;
+    margin: 15px auto;
+    display: block; /* Garante que o player fique centralizado */
+}
+
+#music-player p {
+    font-style: italic;
+    color: var(--text-dark);
+}
+
+/* --- Galeria de Fotos --- */
+#photo-gallery .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    justify-content: center;
+}
+
+#photo-gallery img {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+#photo-gallery img:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+/* --- Área de Texto --- */
+#our-story .text-content {
+    background-color: var(--bg-light);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--accent-color); /* Detalhe lateral */
+}
+
+#our-story p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* --- Rodapé --- */
+footer {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Responsividade Básica --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 20px 15px;
+    }
+
+    #photo-gallery .gallery-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+
+    #music-player audio {
+        width: 95%;
+    }
+}
