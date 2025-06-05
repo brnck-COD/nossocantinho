@@ -3,22 +3,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const welcomeSection = document.getElementById('welcome-section');
     const enterButton = document.getElementById('enter-button');
     const mainContent = document.getElementById('main-content');
+    const audioPlayer = document.getElementById('audio');
 
     if (welcomeSection && enterButton && mainContent) {
         enterButton.addEventListener('click', function() {
             welcomeSection.style.opacity = '0';
-            welcomeSection.style.pointerEvents = 'none'; // Desabilita cliques após o fade
+            welcomeSection.style.pointerEvents = 'none'; 
             setTimeout(() => {
-                welcomeSection.style.display = 'none'; // Esconde a seção de boas-vindas
-                mainContent.style.display = 'block'; // Mostra o conteúdo principal
-                document.body.classList.add('loaded'); // Adiciona a classe para as animações das seções principais
-            }, 1000); // Tempo para a seção de boas-vindas desaparecer (ajuste conforme a animação)
+                welcomeSection.style.display = 'none'; 
+                mainContent.style.display = 'block'; 
+                document.body.classList.add('loaded'); 
+                // Tenta tocar a música AQUI
+                if (audioPlayer) {
+                    audioPlayer.play().catch(error => {
+                        console.log("Autoplay de áudio bloqueado pelo navegador. O usuário precisa interagir com o player.");
+                        // Você pode adicionar um ícone visual aqui para indicar que o som está pausado
+                    });
+                }
+            }, 1000); 
         });
     } else if (mainContent) {
-        // Se a seção de boas-vindas não for encontrada (ex: para testes diretos do main-content)
-        // Isso fará com que o conteúdo principal apareça diretamente
         mainContent.style.display = 'block';
         document.body.classList.add('loaded');
+        // Se não tiver a tela de entrada, tenta tocar direto (mas pode ser bloqueado)
+        if (audioPlayer) {
+            audioPlayer.play().catch(error => {
+                console.log("Autoplay de áudio bloqueado pelo navegador. O usuário precisa interagir com o player.");
+            });
+        }
     }
 
     // --- Carrossel de Fotos ---
