@@ -1,6 +1,7 @@
+document.body.classList.add('loaded');
 document.addEventListener('DOMContentLoaded', function() {
     // Adiciona a classe 'loaded' ao body para ativar as animações CSS
-    document.body.classList.add('loaded');
+    
 
     // --- Carrossel de Fotos ---
     const slides = document.querySelectorAll('.carousel-slide');
@@ -8,11 +9,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButton = document.querySelector('.carousel-next');
     let currentIndex = 0;
 
+    console.log('Slides encontrados:', slides.length); // DEPURACAO: Quantos slides foram encontrados?
+    console.log('Botão Anterior encontrado:', prevButton ? 'Sim' : 'Não'); // DEPURACAO
+    console.log('Botão Próximo encontrado:', nextButton ? 'Sim' : 'Não'); // DEPURACAO
+
     function showSlide(index) {
         // Garante que o índice esteja dentro dos limites válidos
         currentIndex = (index + slides.length) % slides.length;
-        slides.forEach(slide => slide.style.display = 'none');
-        slides[currentIndex].style.display = 'flex'; // Use 'flex' para centralizar a imagem
+        if (currentIndex < 0) { // Lida com o caso de índice negativo (ao voltar da primeira para a última)
+            currentIndex = slides.length - 1;
+        }
+
+        slides.forEach(slide => {
+            slide.style.display = 'none'; // Esconde todos
+            slide.style.opacity = 0;      // Garante que a opacidade esteja zero para a transição
+        });
+
+        // Exibe o slide atual
+        slides[currentIndex].style.display = 'flex'; // Use 'flex' para centralizar a imagem dentro do slide
+        setTimeout(() => { // Pequeno atraso para a transição de opacidade funcionar
+            slides[currentIndex].style.opacity = 1;
+        }, 50); // Ajuste este valor se a transição parecer muito rápida ou não acontecer
+
+        console.log('Mostrando slide:', currentIndex); // DEPURACAO: Qual slide está sendo mostrado?
     }
 
     function nextSlide() {
@@ -23,14 +42,13 @@ document.addEventListener('DOMContentLoaded', function() {
         showSlide(currentIndex - 1);
     }
 
-    if (prevButton && nextButton) {
+    if (prevButton && nextButton && slides.length > 0) {
         nextButton.addEventListener('click', nextSlide);
         prevButton.addEventListener('click', prevSlide);
-    }
-
-    // Para iniciar o carrossel na primeira imagem
-    if (slides.length > 0) { // Garante que há slides antes de chamar showSlide
+        // Inicializa o carrossel
         showSlide(currentIndex);
+    } else {
+        console.warn("Carrossel não pode ser inicializado. Verifique se os elementos estão presentes no HTML e se há slides.");
     }
 
 
@@ -49,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSongIndex = 0;
     const songs = [
         {
-            title: 'Nosso Amor', // Exemplo de música
-            artist: 'Você e Eu',
+            title: '2 Much', // Exemplo de música
+            artist: 'Justin Bieber',
             src: 'audio/Justin Bieber - 2 Much (Visualizer).mp3', // Certifique-se de que este caminho está correto!
             albumArt: 'img/capaMsc.jpg'
         },
@@ -133,3 +151,34 @@ document.addEventListener('DOMContentLoaded', function() {
         loadSong(currentSongIndex);
     }
 });
+// --- Corações Flutuantes ---
+const heartContainer = document.querySelector('.heart-container');
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+
+    const size = Math.random() * 20 + 10; // Tamanho entre 10px e 30px
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
+
+    const startX = Math.random() * window.innerWidth - (size / 2); // Posição X aleatória
+    const startY = window.innerHeight; // Começa na parte inferior da tela
+    heart.style.left = `${startX}px`;
+    heart.style.top = `${startY}px`;
+
+    // Variáveis CSS para a animação
+    heart.style.setProperty('--x-end', `${(Math.random() - 0.5) * 400}px`); // Variação horizontal
+    heart.style.setProperty('--y-end', `-${window.innerHeight * (0.8 + Math.random() * 0.2)}px`); // Flutua quase até o topo
+    heart.style.setProperty('--scale-end', `${1 + Math.random() * 0.5}`); // Aumenta o tamanho um pouco
+
+    heartContainer.appendChild(heart);
+
+    // Remove o coração após a animação para otimização
+    heart.addEventListener('animationend', () => {
+        heart.remove();
+    });
+}
+
+// Cria um coração a cada X milissegundos
+setInterval(createHeart, 250); // Cria um coração a cada 0.5 segundos. Ajuste este valor!

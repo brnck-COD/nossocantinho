@@ -66,7 +66,7 @@ section {
     padding: 20px;
     border-bottom: 1px solid #eee;
     /* Animação de fade-in para seções */
-    opacity: 0;
+    opacity: 1;
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
@@ -128,13 +128,13 @@ body.loaded #our-story {
 
 #music-player .song-info p {
     margin: 0;
-    font-size: 1em;
+    font-size: 1.2em;
     opacity: 0.9;
 }
 
 #music-player .song-info .song-title {
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.2em;
     opacity: 1;
     white-space: nowrap; /* Impede que o título quebre a linha */
     overflow: hidden; /* Esconde o texto que transborda */
@@ -385,5 +385,59 @@ footer {
 
     #music-player .volume-controls {
         margin-top: 10px;
+    }
+}
+/* --- Corações Flutuantes --- */
+.heart-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite clicar através dos corações */
+    overflow: hidden; /* Garante que os corações não apareçam fora da tela */
+    z-index: 9999; /* Garante que os corações fiquem acima de tudo */
+}
+
+.heart {
+    position: absolute;
+    background-color: var(--primary-color); /* Usa a cor do seu tema */
+    transform: rotate(-45deg);
+    animation: floatHeart 10s ease-in-out forwards; /* Animação para flutuar */
+    opacity: 0; /* Começa invisível */
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -50%;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 50%;
+}
+
+/* Animação dos corações flutuando */
+@keyframes floatHeart {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(-45deg);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x-end), var(--y-end)) rotate(-45deg) scale(var(--scale-end));
     }
 }
