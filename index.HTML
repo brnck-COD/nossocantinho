@@ -15,21 +15,53 @@
     <main>
         <section id="music-player">
             <h2>Nossa Trilha Sonora</h2>
-            <div class="player-container">
-                <audio controls>
-                    <source src="audio/audio/Justin Bieber - 2 Much (Visualizer).mp3" type="audio/mpeg">
-                </audio>
-                <p>Ouça nossa música especial enquanto navega pelo site.</p>
+            <div class="music-player-container">
+                <div class="album-art">
+                    <img src="img/capaMsc.jpg" alt="Capa do Álbum">
+                </div>
+                <div class="player-controls">
+                    <div class="song-info">
+                        <p class="song-title">2 Much</p>
+                        <p class="artist-name">Justin Bieber</p>
+                    </div>
+                    <div class="controls">
+                        <button class="control-button prev-track">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 6h2v12H6V6m3.5 6l8.5 6V6l-8.5 6z"/></svg>
+                        </button>
+                        <button class="control-button play-pause">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14zm10-8l-6 4V7l6 4z"/></svg>
+                        </button>
+                        <button class="control-button next-track">
+                            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16 6h2v12h-2V6m-8.5 6l8.5-6v12l-8.5-6z"/></svg>
+                        </button>
+                    </div>
+                    <div class="progress-bar-container">
+                        <input type="range" id="progress" value="0" step="1" min="0" max="100">
+                    </div>
+                    <div class="volume-controls">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <input type="range" id="volume" value="100" step="1" min="0" max="100">
+                    </div>
+                    <audio id="audio" src="audio/Justin Bieber - 2 Much (Visualizer).mp3"></audio>
+                </div>
             </div>
         </section>
 
         <section id="photo-gallery">
             <h2>Nossas Memórias em Fotos</h2>
-            <div class="gallery-grid">
-                <img src="img/1.jpg" alt="Nossa primeira foto juntos">
-                <img src="img/IMG_1677 (1).jpg" alt="Nosso casamento">
-                <img src="img/IMG-20241227-WA0068.jpg" alt="Nossa milhares de fotos na praia kkk">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="img/1.jpg" alt="Nossa foto juntos 1">
                 </div>
+                <div class="carousel-slide">
+                    <img src="img/IMG_1677 (1).jpg" alt="Nossa foto juntos 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/IMG-20241227-WA0068.jpg" alt="Nossa foto juntos 3">
+                </div>
+                <button class="carousel-prev">&#10094;</button>
+                <button class="carousel-next">&#10095;</button>
+            </div>
         </section>
 
         <section id="our-story">
@@ -47,7 +79,7 @@
                 </p>
                 <p>
                     Com todo o meu amor,<br>
-                    Brunno Araujo. 
+                    Brunno Araujo.
                 </p>
             </div>
         </section>
